@@ -7,12 +7,19 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "allowJs": false,
-    "baseUrl": "src",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "downlevelIteration": true,
+    "baseUrl": ".",
     "paths": {
-      "*": ["src/*"]
+      "~/components/*": ["src/components/*"],
+      "~/containers/*": ["src/containers/*"],
+      "~/hooks/*": ["src/hooks/*"],
+      "~/contexts/*": ["src/contexts/*"],
+      "~/graphql/*": ["src/graphql/*"],
+      "~/assets/*": ["src/assets/*"],
+      "~/lib/*": ["src/lib/*"],
+      "~/types/*": ["types/*"]
     },
     "lib": [
       "esnext",
