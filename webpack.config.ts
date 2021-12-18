@@ -1,21 +1,22 @@
-import path from 'path';
-import { DefinePlugin, Configuration } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import path from "path";
+import { DefinePlugin, Configuration } from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const webpackConfig = (): Configuration => ({
-  entry: './src/index.tsx',
+  entry: "./src/index.tsx",
   ...(process.env.production || !process.env.development
     ? {}
-    : { devtool: 'eval-source-map' }),
+    : { devtool: "eval-source-map" }),
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
+    extensions: [".ts", ".tsx", ".js"],
+    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'build.js',
+    path: path.join(__dirname, "/build"),
+    filename: "build.js",
   },
   devServer: {
     port: 3000,
@@ -26,7 +27,7 @@ const webpackConfig = (): Configuration => ({
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        loader: "ts-loader",
         options: {
           transpileOnly: true,
         },
@@ -35,12 +36,14 @@ const webpackConfig = (): Configuration => ({
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
+          // fallback to style-loader in development
+          // style-loader creates `style` nodes from JS strings
+          process.env.production || !process.env.development
+            ? MiniCssExtractPlugin.loader
+            : "style-loader",
+          "css-loader",
           // Compiles Sass to CSS
-          'sass-loader',
+          "sass-loader",
         ],
       },
     ],
@@ -48,18 +51,19 @@ const webpackConfig = (): Configuration => ({
   plugins: [
     new HtmlWebpackPlugin({
       // HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles
-      template: './public/index.html',
+      template: "./public/index.html",
     }),
     // DefinePlugin allows you to create global constants which can be configured at compile time
     new DefinePlugin({
-      'process.env': process.env.production || !process.env.development,
+      "process.env": process.env.production || !process.env.development,
     }),
     new ForkTsCheckerWebpackPlugin({
       // Speeds up TypeScript type checking and ESLint linting (by moving each to a separate process)
       eslint: {
-        files: './src/**/*.{ts,tsx,js,jsx}',
+        files: "./src/**/*.{ts,tsx,js,jsx}",
       },
     }),
+    new MiniCssExtractPlugin(),
   ],
 });
 
