@@ -1,4 +1,9 @@
-root, html,
+// Bootstrap Bootstrap (the order is important).
+@import "variables";
+@import "bootstrap";
+
+root,
+html,
 body {
   height: 100%;
 }

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './css/app.scss';
-import {ErrorMessage} from '~/components/ErrorMessage';
+import * as React from "react";
+import "./css/app.scss";
+import { ErrorMessage } from "~/components/ErrorMessage";
 
 const App: React.FC = () => (
   <div>

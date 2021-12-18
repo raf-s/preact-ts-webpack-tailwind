@@ -1,1 +1,1 @@
-export type BootstrapSize = 'sm' | 'lg';
+export type BootstrapSize = "sm" | "lg";

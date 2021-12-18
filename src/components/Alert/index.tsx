@@ -1,7 +1,7 @@
-import * as React from 'react';
-import clsx from 'clsx';
-import {BootstrapSize} from '../../types/BootstrapSize';
-import {ColourVariants} from '../../types/ColourVariants';
+import * as React from "react";
+import clsx from "clsx";
+import { BootstrapSize } from "../../types/BootstrapSize";
+import { ColourVariants } from "../../types/ColourVariants";
 
 type AlertProps = React.HTMLAttributes<HTMLDivElement> & {
   variant: ColourVariants;
@@ -18,10 +18,10 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <div
       className={clsx(
-        'alert',
+        "alert",
         `alert-${variant}`,
         size && `alert-${size}`,
-        className,
+        className
       )}
       {...divProps}
     >

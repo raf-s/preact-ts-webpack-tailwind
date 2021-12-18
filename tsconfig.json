@@ -21,16 +21,10 @@
       "~/lib/*": ["src/lib/*"],
       "~/types/*": ["types/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": false
   },
   "exclude": ["node_modules", "build"],
-  "include": [
-    "./src",
-    "webpack.config.ts" ]
+  "include": ["./src", "webpack.config.ts"]
 }

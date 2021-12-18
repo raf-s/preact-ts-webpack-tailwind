@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {Alert} from '~/components/Alert';
-import {BootstrapSize} from '../../types/BootstrapSize';
+import * as React from "react";
+import { Alert } from "~/components/Alert";
+import { BootstrapSize } from "../../types/BootstrapSize";
 
 type ErrorMessageProps = {
   error: string | null | undefined;
