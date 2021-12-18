@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "es5",
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
@@ -19,12 +19,12 @@
       "~/graphql/*": ["src/graphql/*"],
       "~/assets/*": ["src/assets/*"],
       "~/lib/*": ["src/lib/*"],
+      "~/util/*": ["src/util/*"],
       "~/types/*": ["types/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable"],
     "sourceMap": true,
     "noImplicitAny": false
   },
-  "exclude": ["node_modules", "build"],
-  "include": ["./src", "webpack.config.ts"]
+  "exclude": ["node_modules", "dist"],
 }

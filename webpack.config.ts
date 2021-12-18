@@ -4,6 +4,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const webpackConfig = (): Configuration => ({
   entry: "./src/index.tsx",
@@ -15,8 +17,8 @@ const webpackConfig = (): Configuration => ({
     plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
   output: {
-    path: path.join(__dirname, "/build"),
-    filename: "build.js",
+    path: path.join(__dirname, "/dist"),
+    filename: "main.js",
   },
   devServer: {
     port: 3000,
@@ -48,6 +50,10 @@ const webpackConfig = (): Configuration => ({
       },
     ],
   },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({ extractComments: false })],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       // HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles
@@ -63,7 +69,11 @@ const webpackConfig = (): Configuration => ({
         files: "./src/**/*.{ts,tsx,js,jsx}",
       },
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+      chunkFilename: "styles.[id].css",
+    }),
+    new CleanWebpackPlugin(),
   ],
 });
 

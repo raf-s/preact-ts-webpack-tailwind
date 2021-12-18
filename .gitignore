@@ -2,7 +2,7 @@
 .idea
 
 node_modules
-build
+dist
 
 # Logs
 yarn-error.log
