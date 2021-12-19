@@ -1,11 +1,9 @@
-import * as React from "react";
+import { FunctionComponent } from "preact";
 import "./css/app.scss";
-import { ErrorMessage } from "~/components/ErrorMessage";
 
-const App: React.FC = () => (
+const App: FunctionComponent = () => (
   <div>
-    <h1>React 17 and TypeScript 4 App!🚀</h1>
-    <ErrorMessage error="This is a test error!" />
+    <h1>Preact 17 and TypeScript 4 App!🚀</h1>
   </div>
 );
 

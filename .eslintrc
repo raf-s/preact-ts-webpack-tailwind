@@ -1,46 +1,29 @@
 {
   "parser": "@typescript-eslint/parser",
-
   "env": {
-  "browser": true
-},
+    "browser": true
+  },
   "extends": [
-  "plugin:@typescript-eslint/recommended",
-  "plugin:react/recommended",
-  "plugin:prettier/recommended"
-],
-  "parserOptions": {
-  "project": [
-    "tsconfig.json"
+    "plugin:@typescript-eslint/recommended",
+    "preact",
+    "plugin:prettier/recommended"
   ],
-    "ecmaVersion": 2020,
+  "parserOptions": {
+    "project": [
+      "tsconfig.json"
+    ],
+    "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
-    "jsx": true
-  }
-},
-  "plugins": [
-  "@typescript-eslint",
-  "react",
-  "react-hooks",
-  "eslint-plugin-import",
-  "prettier"
-],
-  "rules": {
-  "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/prop-types": "off",
-    "prettier/prettier": [
-    "error",
-    {
-      "endOfLine": "auto"
+      "jsx": true
     }
+  },
+  "rules": {
+    "import/no-default-export": "error"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-plugin-import",
+    "prettier"
   ]
-},
-  "settings": {
-  "react": {
-    "version": "detect"
-  }
-}
 }
