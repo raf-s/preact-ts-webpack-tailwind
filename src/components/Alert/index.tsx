@@ -1,8 +1,8 @@
 import { FunctionComponent } from "preact";
-import clsx from "clsx";
 import { ColourVariants } from "~/types/ColourVariants";
 import { BootstrapSize } from "~/types/BootstrapSize";
 import { JSXInternal } from "preact/src/jsx";
+import clsx from "clsx";
 
 type AlertProps = JSXInternal.HTMLAttributes<HTMLDivElement> & {
   variant: ColourVariants;
