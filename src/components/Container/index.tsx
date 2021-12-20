@@ -1,12 +1,11 @@
-import { FunctionComponent } from "preact";
+import React from "preact/compat";
 import clsx from "clsx";
-import { JSXInternal } from "preact/src/jsx";
 
-type ContainerProps = JSXInternal.HTMLAttributes<HTMLDivElement> & {
+type ContainerProps = React.JSX.HTMLAttributes<HTMLDivElement> & {
   fluid?: boolean;
 };
 
-export const Container: FunctionComponent<ContainerProps> = ({
+export const Container: React.FC<ContainerProps> = ({
   fluid,
   className,
   children,

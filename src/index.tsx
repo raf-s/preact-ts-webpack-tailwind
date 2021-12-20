@@ -1,4 +1,4 @@
-import { h, render } from "preact";
+import React from "preact/compat";
 import App from "./App";
 
-render(<App />, document.getElementById("root"));
+React.render(<App />, document.getElementById("root"));

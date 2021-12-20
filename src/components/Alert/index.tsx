@@ -1,4 +1,4 @@
-import { FunctionComponent } from "preact";
+import React from "preact/compat";
 import { ColourVariants } from "~/types/ColourVariants";
 import { BootstrapSize } from "~/types/BootstrapSize";
 import { JSXInternal } from "preact/src/jsx";
@@ -9,7 +9,7 @@ type AlertProps = JSXInternal.HTMLAttributes<HTMLDivElement> & {
   size?: BootstrapSize;
 };
 
-export const Alert: FunctionComponent<AlertProps> = ({
+export const Alert: React.FC<AlertProps> = ({
   variant,
   className,
   size,
