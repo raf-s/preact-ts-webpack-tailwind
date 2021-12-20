@@ -1,4 +1,12 @@
 import React from "preact/compat";
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
-React.render(<App />, document.getElementById("root"));
+React.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
