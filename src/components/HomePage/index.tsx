@@ -5,7 +5,7 @@ export const HomePage: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <h1>Preact 17 and TypeScript 4 App!🚀</h1>˚{" "}
+      <h1>Preact and TypeScript App!🚀</h1>
     </div>
   );
 };
