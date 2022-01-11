@@ -1,11 +1,10 @@
 import path from "path";
-import { DefinePlugin, Configuration } from "webpack";
+import { Configuration, DefinePlugin } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
 const webpackConfig = (): Configuration => ({
   entry: "./src/index.tsx",
@@ -25,6 +24,7 @@ const webpackConfig = (): Configuration => ({
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "main.js",
+    clean: true,
   },
   devServer: {
     port: 3000,
@@ -42,16 +42,13 @@ const webpackConfig = (): Configuration => ({
         exclude: /build/,
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
-          // fallback to style-loader in development
-          // style-loader creates `style` nodes from JS strings
-          process.env.production || !process.env.development
-            ? MiniCssExtractPlugin.loader
-            : "style-loader",
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
+          "postcss-loader",
         ],
       },
     ],
@@ -79,7 +76,6 @@ const webpackConfig = (): Configuration => ({
       filename: "styles.css",
       chunkFilename: "styles.[id].css",
     }),
-    new CleanWebpackPlugin(),
   ],
 });
 

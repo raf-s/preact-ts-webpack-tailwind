@@ -1,5 +1,5 @@
 import React from "preact/compat";
-import "./css/app.scss";
+import "./css/main.css";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "~/components/HomePage";
 
