@@ -1,47 +1,83 @@
 {
-  "name": "react-ts-webpack-bootstrap",
+  "name": "preact-ts-webpack-tailwind",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Raf Sz.",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "start": "webpack-cli serve --mode=development --env development --open --hot",
     "build": "webpack --mode=production --env production --progress",
-    "lint": "eslint *.{ts,tsx} --quiet --fix"
+    "serve": "serve dist -p 3000 -s",
+    "format:other": "yarn prettier --write \"{,!(generated)/**/}*.{json,gql,graphql,yaml,yml}\"",
+    "format:code": "yarn prettier --write \"{,!(generated)/**/}*.{ts,tsx,js,jsx}\"",
+    "fix:code": "yarn lint:code --fix",
+    "fix": "yarn fix:code && yarn fix:css && yarn format:code && yarn format:other",
+    "prettier": "prettier --ignore-path .gitignore",
+    "lint:other": "yarn prettier --list-different \"{,!(generated)/**/}*.{json,gql,graphql,yaml,yml}\"",
+    "lint:code": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
+    "lint": "yarn lint:other && yarn lint:code && yarn lint:css"
+  },
+  "lint-staged": {
+    "!(generated)/**/*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings=0 --ignore-path .gitignore --fix",
+      "prettier --ignore-path .gitignore --write"
+    ],
+    "!(generated)/**/*.{json,gql,graphql,yaml,yml}": [
+      "prettier --ignore-path .gitignore --write"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not IE 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
-    "bootstrap": "^5.1.3",
+    "@headlessui/react": "^1.4.2",
+    "@types/react-helmet": "^6.1.5",
     "clsx": "^1.1.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.0.3",
-    "react-dom": "^17.0.2"
+    "preact": "^10.6.4",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.2.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.0",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
+    "@types/tailwindcss": "^3.0.2",
     "@types/webpack-dev-server": "^4.5.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "clean-webpack-plugin": "^4.0.0",
+    "autoprefixer": "^10.4.2",
+    "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",
+    "cssnano": "^5.0.15",
     "eslint": "^8.5.0",
+    "eslint-config-preact": "^1.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "lint-staged": "^12.1.3",
     "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.4.5",
+    "postcss-loader": "^6.2.1",
     "prettier": "^2.5.1",
-    "sass": "^1.45.0",
-    "sass-loader": "^12.4.0",
+    "raw-loader": "^4.0.2",
+    "serve": "^13.0.2",
     "style-loader": "^3.3.1",
-    "stylelint": "^14.1.0",
-    "stylelint-config-standard-scss": "^3.0.0",
-    "stylelint-config-twbs-bootstrap": "^3.0.0",
-    "stylelint-scss": "^4.0.1",
+    "tailwindcss": "^3.0.13",
     "terser-webpack-plugin": "^5.3.0",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",

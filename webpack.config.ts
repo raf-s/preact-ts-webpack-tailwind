@@ -1,24 +1,34 @@
 import path from "path";
-import { DefinePlugin, Configuration } from "webpack";
+import { Configuration as WebpackConfig, DefinePlugin } from "webpack";
+import { Configuration as WebpackDevServerConfig } from "webpack-dev-server";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
-const webpackConfig = (): Configuration => ({
+type Config = WebpackConfig & WebpackDevServerConfig;
+
+const webpackConfig = (): Config => ({
   entry: "./src/index.tsx",
   ...(process.env.production || !process.env.development
     ? {}
     : { devtool: "eval-source-map" }),
   resolve: {
+    alias: {
+      react: "preact/compat",
+      "react-dom/test-utils": "preact/test-utils",
+      "react-dom": "preact/compat", // Must be below test-utils
+      "react/jsx-runtime": "preact/jsx-runtime",
+    },
     extensions: [".ts", ".tsx", ".js"],
     plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })],
   },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "main.js",
+    clean: true,
   },
   devServer: {
     port: 3000,
@@ -36,28 +46,56 @@ const webpackConfig = (): Configuration => ({
         exclude: /build/,
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
-          // fallback to style-loader in development
-          // style-loader creates `style` nodes from JS strings
-          process.env.production || !process.env.development
-            ? MiniCssExtractPlugin.loader
-            : "style-loader",
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
+          "postcss-loader",
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets",
+        },
+      },
+      { test: /\.(gql|graphql)$/, use: ["raw-loader"] },
     ],
   },
   optimization: {
+    sideEffects: true,
     minimize: true,
-    minimizer: [new TerserPlugin({ extractComments: false })],
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          compress: { ecma: 2015 },
+          format: {
+            comments: false,
+          },
+          mangle: true,
+          ie8: false,
+          safari10: false,
+        },
+      }),
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       // HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles
       template: "./public/index.html",
+      favicon: "./public/favicon.ico",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "public",
+          globOptions: { ignore: ["**/index.html", "**/favicon.ico"] },
+        },
+      ],
     }),
     // DefinePlugin allows you to create global constants which can be configured at compile time
     new DefinePlugin({
@@ -73,8 +111,8 @@ const webpackConfig = (): Configuration => ({
       filename: "styles.css",
       chunkFilename: "styles.[id].css",
     }),
-    new CleanWebpackPlugin(),
   ],
 });
 
+// eslint-disable-next-line import/no-default-export
 export default webpackConfig;

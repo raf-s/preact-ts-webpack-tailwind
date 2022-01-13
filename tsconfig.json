@@ -2,14 +2,18 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "allowJs": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "downlevelIteration": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "~/components/*": ["src/components/*"],
@@ -23,8 +27,7 @@
       "~/types/*": ["types/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable"],
-    "sourceMap": true,
-    "noImplicitAny": false
+    "typeRoots": ["types"]
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist", "public/**/*"]
 }
