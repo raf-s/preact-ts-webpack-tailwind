@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
@@ -27,6 +27,7 @@
       "~/types/*": ["types/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable"],
+    "typeRoots": ["types"]
   },
   "exclude": ["node_modules", "dist", "public/**/*"]
 }

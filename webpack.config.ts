@@ -1,12 +1,15 @@
 import path from "path";
-import { Configuration, DefinePlugin } from "webpack";
+import { Configuration as WebpackConfig, DefinePlugin } from "webpack";
+import { Configuration as WebpackDevServerConfig } from "webpack-dev-server";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 
-const webpackConfig = (): Configuration => ({
+type Config = WebpackConfig & WebpackDevServerConfig;
+
+const webpackConfig = (): Config => ({
   entry: "./src/index.tsx",
   ...(process.env.production || !process.env.development
     ? {}
