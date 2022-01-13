@@ -8,5 +8,5 @@ React.render(
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.body
 );
