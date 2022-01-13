@@ -61,6 +61,7 @@ const webpackConfig = (): Config => ({
           outputPath: "assets",
         },
       },
+      { test: /\.(gql|graphql)$/, use: ["raw-loader"] },
     ],
   },
   optimization: {
