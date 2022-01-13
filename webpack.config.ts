@@ -6,6 +6,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 type Config = WebpackConfig & WebpackDevServerConfig;
 
@@ -86,6 +87,15 @@ const webpackConfig = (): Config => ({
     new HtmlWebpackPlugin({
       // HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles
       template: "./public/index.html",
+      favicon: "./public/favicon.ico",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "public",
+          globOptions: { ignore: ["**/index.html", "**/favicon.ico"] },
+        },
+      ],
     }),
     // DefinePlugin allows you to create global constants which can be configured at compile time
     new DefinePlugin({
