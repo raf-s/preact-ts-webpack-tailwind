@@ -65,8 +65,22 @@ const webpackConfig = (): Config => ({
     ],
   },
   optimization: {
+    sideEffects: true,
     minimize: true,
-    minimizer: [new TerserPlugin({ extractComments: false })],
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+        terserOptions: {
+          compress: { ecma: 2015 },
+          format: {
+            comments: false,
+          },
+          mangle: true,
+          ie8: false,
+          safari10: false,
+        },
+      }),
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
