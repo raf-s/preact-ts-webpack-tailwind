@@ -28,8 +28,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.2",
+    "@types/react-helmet": "^6.1.5",
     "clsx": "^1.1.1",
     "preact": "^10.6.4",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.2.1"
   },
   "devDependencies": {

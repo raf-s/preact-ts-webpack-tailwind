@@ -1,9 +1,13 @@
 import { Navbar } from "~/components/Navbar";
 import React from "preact/compat";
+import { Helmet } from "react-helmet";
 
 export const HomePage: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>Home Page</title>
+      </Helmet>
       <header>
         <Navbar />
       </header>
