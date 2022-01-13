@@ -54,6 +54,13 @@ const webpackConfig = (): Config => ({
           "postcss-loader",
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets",
+        },
+      },
     ],
   },
   optimization: {
