@@ -27,3 +27,5 @@
     "prettier"
   ]
 }
+
+//@todo restricted upload from @heroicons/react/outline & @heroicons/react/solid (no destructuring!)
