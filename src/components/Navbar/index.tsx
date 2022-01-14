@@ -4,6 +4,7 @@ import MenuIcon from "@heroicons/react/outline/MenuIcon";
 import XIcon from "@heroicons/react/outline/XIcon";
 import { Link } from "~/components/Link";
 import { routes } from "~/lib/routes";
+import { LightOrDarkModeSwitch } from "~/components/Navbar/LightOrDarkModeSwitch";
 
 const user = {
   name: "Tom Cook",
@@ -53,6 +54,9 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-4 flex items-center md:ml-6">
+                  <div className="mr-3">
+                    <LightOrDarkModeSwitch />
+                  </div>
                   {/* Profile dropdown */}
                   <Menu as="div" className="ml-3 relative">
                     <div>
