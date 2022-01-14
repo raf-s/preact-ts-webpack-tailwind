@@ -21,12 +21,12 @@ export const Link: React.FC<LinkProps> = ({
 
   const isActive = pathname === to;
   const getActiveClassName = () => {
-    return activeClassName ? `active ${activeClassName}` : "active";
+    return activeClassName ? activeClassName : "active";
   };
   return (
     <ReactRouterLink
       to={to}
-      className={clsx("link", isActive && getActiveClassName(), className)}
+      className={clsx("link", className, isActive && getActiveClassName())}
       {...linkProps}
     />
   );

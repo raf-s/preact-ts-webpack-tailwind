@@ -23,7 +23,7 @@ const userNavigation = [
 
 export const Navbar: React.FC = () => {
   return (
-    <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-900">
+    <Disclosure as="nav" className="bg-white shadow dark:bg-gray-900">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +42,8 @@ export const Navbar: React.FC = () => {
                       <Link
                         key={item.name}
                         to={item.href}
-                        activeClassName="bg-gray-700 text-white"
+                        className="px-3 py-2 hover:bg-blue-500 hover:text-white rounded-md text-sm font-medium"
+                        activeClassName="bg-blue-500 text-white"
                       >
                         {item.name}
                       </Link>
@@ -78,8 +79,8 @@ export const Navbar: React.FC = () => {
                           <Menu.Item key={item.name}>
                             <Link
                               to={item.href}
-                              className="block px-4 py-2 text-sm text-gray-700"
-                              activeClassName="bg-gray-700"
+                              className="block px-4 py-2 text-sm"
+                              activeClassName="bg-blue-500 text-white"
                             >
                               {item.name}
                             </Link>
@@ -92,12 +93,17 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="-mr-2 flex md:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
+                <Disclosure.Button className="text-blue-500 dark:bg-gray-700 dark:text-gray-300 inline-flex items-center justify-center p-2 rounded-md">
                   {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    <>
+                      <span className="mr-0.5">Close</span>
+                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    </>
                   ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    <>
+                      <span className="mr-0.5">Menu</span>
+                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    </>
                   )}
                 </Disclosure.Button>
               </div>
@@ -112,13 +118,13 @@ export const Navbar: React.FC = () => {
                   as={Link}
                   to={item.href}
                   className="block px-3 py-2 rounded-md text-base font-medium"
-                  activeClassName="bg-gray-700"
+                  activeClassName="bg-blue-500 text-white"
                 >
                   {item.name}
                 </Disclosure.Button>
               ))}
             </div>
-            <div className="pt-4 pb-3 border-t border-gray-700">
+            <div className="pt-4 pb-3 border-t dark:border-gray-700">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
                   <img
@@ -128,10 +134,10 @@ export const Navbar: React.FC = () => {
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium leading-none text-white">
+                  <div className="text-base font-medium leading-none">
                     {user.name}
                   </div>
-                  <div className="text-sm font-medium leading-none text-gray-400">
+                  <div className="text-sm font-medium leading-none">
                     {user.email}
                   </div>
                 </div>
@@ -142,8 +148,8 @@ export const Navbar: React.FC = () => {
                     key={item.name}
                     as={Link}
                     to={item.href}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-                    activeClassName="bg-gray-700"
+                    className="block px-3 py-2 rounded-md text-base font-medium hover:text-white hover:bg-gray-700"
+                    activeClassName="bg-blue-500 text-white"
                   >
                     {item.name}
                   </Disclosure.Button>
