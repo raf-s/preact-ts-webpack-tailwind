@@ -7,6 +7,7 @@ import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 type Config = WebpackConfig & WebpackDevServerConfig;
 
@@ -68,6 +69,29 @@ const webpackConfig = (): Config => ({
   optimization: {
     sideEffects: true,
     minimize: true,
+    splitChunks: {
+      chunks: "all",
+      filename: "chunk.[id].js",
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+          filename: "vendors.js",
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
     minimizer: [
       new TerserPlugin({
         extractComments: false,
@@ -110,6 +134,12 @@ const webpackConfig = (): Config => ({
     new MiniCssExtractPlugin({
       filename: "styles.css",
       chunkFilename: "styles.[id].css",
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled",
+      generateStatsFile: true,
+      statsFilename: "./../tmp/bundleStats.json",
+      statsOptions: { source: false },
     }),
   ],
 });
