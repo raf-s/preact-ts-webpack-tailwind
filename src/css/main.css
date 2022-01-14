@@ -6,5 +6,13 @@ root,
 html,
 body {
   height: 100%;
-  @apply bg-white dark:bg-gray-800 dark:text-gray-100
+  @apply bg-white dark:bg-gray-800 dark:text-gray-100;
+}
+
+.link {
+  @apply px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white;
+
+  &.active {
+    @apply text-white;
+  }
 }

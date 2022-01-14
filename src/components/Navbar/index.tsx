@@ -1,8 +1,9 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import * as React from "preact/compat";
-import clsx from "clsx";
 import MenuIcon from "@heroicons/react/outline/MenuIcon";
 import XIcon from "@heroicons/react/outline/XIcon";
+import { Link } from "~/components/Link";
+import { routes } from "~/lib/routes";
 
 const user = {
   name: "Tom Cook",
@@ -11,16 +12,13 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Dashboard", href: routes.home },
+  { name: "Test", href: routes.test },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", href: routes.test },
+  { name: "Settings", href: "/settings" },
+  { name: "Sign out", href: "/sign-out" },
 ];
 
 export const Navbar: React.FC = () => {
@@ -41,19 +39,13 @@ export const Navbar: React.FC = () => {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
-                        className={clsx(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
+                        to={item.href}
+                        activeClassName="bg-gray-700 text-white"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -81,20 +73,16 @@ export const Navbar: React.FC = () => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name}>
-                            {({ active }) => (
-                              <a
-                                href={item.href}
-                                className={clsx(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700"
-                                )}
-                              >
-                                {item.name}
-                              </a>
-                            )}
+                            <Link
+                              to={item.href}
+                              className="block px-4 py-2 text-sm text-gray-700"
+                              activeClassName="bg-gray-700"
+                            >
+                              {item.name}
+                            </Link>
                           </Menu.Item>
                         ))}
                       </Menu.Items>
@@ -121,15 +109,10 @@ export const Navbar: React.FC = () => {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={clsx(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block px-3 py-2 rounded-md text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  as={Link}
+                  to={item.href}
+                  className="block px-3 py-2 rounded-md text-base font-medium"
+                  activeClassName="bg-gray-700"
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -157,9 +140,10 @@ export const Navbar: React.FC = () => {
                 {userNavigation.map((item) => (
                   <Disclosure.Button
                     key={item.name}
-                    as="a"
-                    href={item.href}
+                    as={Link}
+                    to={item.href}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                    activeClassName="bg-gray-700"
                   >
                     {item.name}
                   </Disclosure.Button>
