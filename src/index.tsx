@@ -1,4 +1,9 @@
 import * as React from "preact/compat";
 import App from "./App";
 
-React.render(<App />, document.body);
+React.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.body
+);
