@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import * as React from "preact/compat";
 import App from "./App";
 
 React.render(
