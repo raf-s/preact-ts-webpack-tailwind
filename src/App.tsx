@@ -1,4 +1,11 @@
-import React from "preact/compat";
+// Must be the first import
+if (process.env.NODE_ENV === "development") {
+  // Must use require here as import statements are only allowed
+  // to exist at top-level.
+  require("preact/debug");
+}
+
+import * as React from "preact/compat";
 import "./css/main.css";
 import { HomePage } from "~/components/HomePage";
 import { routes } from "~/lib/routes";
