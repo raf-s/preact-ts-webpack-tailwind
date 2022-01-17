@@ -8,6 +8,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import CompressionPlugin from "compression-webpack-plugin";
 
 type Config = WebpackConfig & WebpackDevServerConfig;
 
@@ -140,6 +141,14 @@ const webpackConfig = (): Config => ({
       generateStatsFile: true,
       statsFilename: "./../tmp/bundleStats.json",
       statsOptions: { source: false },
+    }),
+    new CompressionPlugin({
+      filename: "[path][base].br",
+      algorithm: "brotliCompress",
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
     }),
   ],
 });
