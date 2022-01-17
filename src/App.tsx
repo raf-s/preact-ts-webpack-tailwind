@@ -1,5 +1,5 @@
-import { ThemeContextProvider } from "~/contexts/ThemeContext";
 import * as React from "preact/compat";
+import { ThemeContextProvider } from "~/contexts/ThemeContext";
 import "./css/main.css";
 import { HomePage } from "~/components/HomePage";
 import { routes } from "~/lib/routes";

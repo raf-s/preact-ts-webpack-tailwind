@@ -29,5 +29,6 @@
     "lib": ["esnext", "dom", "dom.iterable"],
     "typeRoots": ["types"]
   },
-  "exclude": ["node_modules", "dist", "public/**/*"]
+  "exclude": ["node_modules", "dist", "public/**/*"],
+  "include": ["src"]
 }

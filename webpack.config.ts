@@ -44,7 +44,7 @@ const webpackConfig = (): Config => ({
         options: {
           transpileOnly: true,
         },
-        exclude: /build/,
+        exclude: /dist/,
       },
       {
         test: /\.css$/i,
