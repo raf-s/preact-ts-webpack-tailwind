@@ -26,8 +26,9 @@
       "~/util/*": ["src/util/*"],
       "~/types/*": ["types/*"]
     },
+    "types": ["node"],
     "lib": ["esnext", "dom", "dom.iterable"],
-    "typeRoots": ["types"]
+    "typeRoots": ["types", "node_modules/@types"]
   },
   "exclude": ["node_modules", "dist", "public/**/*"],
   "include": ["src"]
