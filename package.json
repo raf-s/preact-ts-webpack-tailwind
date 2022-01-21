@@ -13,11 +13,15 @@
     "format:other": "yarn prettier --write \"{,!(generated)/**/}*.{json,gql,graphql,yaml,yml}\"",
     "format:code": "yarn prettier --write \"{,!(generated)/**/}*.{ts,tsx,js,jsx}\"",
     "fix:code": "yarn lint:code --fix",
-    "fix": "yarn fix:code && yarn fix:css && yarn format:code && yarn format:other",
+    "fix": "yarn fix:code && yarn format:code && yarn format:other",
     "prettier": "prettier --ignore-path .gitignore",
     "lint:other": "yarn prettier --list-different \"{,!(generated)/**/}*.{json,gql,graphql,yaml,yml}\"",
     "lint:code": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
-    "lint": "yarn lint:other && yarn lint:code && yarn lint:css"
+    "lint": "yarn lint:other && yarn lint:code"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": false
   },
   "lint-staged": {
     "!(generated)/**/*.{js,jsx,ts,tsx}": [
