@@ -31,5 +31,5 @@
     "types": ["node"],
     "lib": ["esnext", "dom", "dom.iterable"],
     "typeRoots": ["types", "node_modules/@types"]
-  },
+  }
 }

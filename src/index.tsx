@@ -5,5 +5,5 @@ React.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.body
+  document.body,
 );
