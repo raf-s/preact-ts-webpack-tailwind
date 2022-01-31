@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Raf Sz.",
+  "repository": {
+    "url": "https://github.com/raf-s/preact-ts-webpack-tailwind"
+  },
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
@@ -48,7 +51,6 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
-    "@types/react-helmet": "^6.1.5",
     "clsx": "^1.1.1",
     "preact": "^10.6.4",
     "react-helmet": "^6.1.0",
@@ -56,6 +58,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.0",
+    "@types/react-helmet": "^6.1.5",
     "@types/tailwindcss": "^3.0.2",
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
